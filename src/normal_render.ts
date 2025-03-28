@@ -35,18 +35,15 @@ export function createTextElement(nodeValue: string): TextNode {
 export function createElement(
   type: keyof HTMLElementTagNameMap,
   props: Record<string, string | ElementNode | TextNode>,
-  children: (ElementNode | TextNode | string)[] | string
+  ...children: (ElementNode | TextNode | string)[]
 ): ElementNode {
   return {
     type: type,
     props: {
       ...props,
-      children:
-        typeof children == 'string'
-          ? [createTextElement(children)]
-          : children.map((child) =>
-              typeof child == 'string' ? createTextElement(child) : child
-            ),
+      children: children.map((child) =>
+        typeof child === 'string' ? createTextElement(child) : child
+      ),
     },
   };
 }
