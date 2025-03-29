@@ -13,15 +13,16 @@ export interface TextNode {
     nodeValue: string;
   };
 }
-export type FiberNode = {
-  type: string | Function | null;
+export interface FiberNode {
+  type: string | null;
+  props: any;
   dom: HTMLElement | Text | null;
   parent: FiberNode | null;
   child: FiberNode | null;
   sibling: FiberNode | null;
-  props: {
-    [key: string]: any;
-    children: FiberNode[];
-  };
-};
+  alternate: FiberNode | null; // Previous fiber node for diffing
+  effectTag?: "PLACEMENT" | "UPDATE" | "DELETION"; // Marks what to do with the node
+  nextEffect?: FiberNode | null; // Tracks fibers that need updates
+}
+
 

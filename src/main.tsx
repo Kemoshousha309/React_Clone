@@ -1,4 +1,5 @@
-import { createElement, render } from './fiber_render';
+import { createElement } from './fiber_render';
+import { render } from './miniReact';
 
 // const React = { createElement };
 
@@ -23,7 +24,6 @@ const App = createElement(
 );
 
 
-console.log(App);
 const container = document.getElementById('app') as HTMLElement;
 
 // debugger;
